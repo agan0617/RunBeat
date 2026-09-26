@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 108dp 畫布，內容留在中央 66dp 安全區：節拍器外框＋擺錘 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- 梯形外框 -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="4.5"
+        android:strokeLineJoin="round"
+        android:pathData="M46,30 L62,30 L74,78 L34,78 Z" />
+    <!-- 底座橫線 -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="4.5"
+        android:strokeLineCap="round"
+        android:pathData="M38,66 L70,66" />
+    <!-- 擺錘 -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:pathData="M54,66 L66,36" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M60.5,46 m-4.5,0 a4.5,4.5 0,1 1,9 0 a4.5,4.5 0,1 1,-9 0" />
+</vector>

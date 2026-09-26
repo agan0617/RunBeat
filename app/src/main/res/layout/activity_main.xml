@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/bpm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="170"
+            android:textSize="112sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary"
+            android:fontFeatureSettings="tnum" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BPM"
+            android:textSize="18sp"
+            android:letterSpacing="0.2"
+            android:textColor="?android:attr/textColorSecondary" />
+
+        <SeekBar
+            android:id="@+id/bpmBar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button android:id="@+id/minus5" style="@style/StepButton" android:text="−5" />
+            <Button android:id="@+id/minus1" style="@style/StepButton" android:text="−1" />
+            <Button android:id="@+id/plus1" style="@style/StepButton" android:text="+1" />
+            <Button android:id="@+id/plus5" style="@style/StepButton" android:text="+5" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/SectionLabel"
+            android:text="聲音" />
+
+        <RadioGroup
+            android:id="@+id/sounds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <TextView
+            android:id="@+id/volumeLabel"
+            style="@style/SectionLabel"
+            android:text="音量 80%" />
+
+        <SeekBar
+            android:id="@+id/volumeBar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:max="100" />
+
+        <Button
+            android:id="@+id/toggle"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginTop="24dp"
+            android:text="開始"
+            android:textSize="24sp"
+            android:textColor="@color/on_accent"
+            android:backgroundTint="@color/accent" />
+
+        <TextView
+            android:id="@+id/batteryHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="13sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:visibility="gone"
+            android:text="@string/battery_hint" />
+    </LinearLayout>
+</ScrollView>

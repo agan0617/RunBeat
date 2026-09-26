@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RunBeat</string>
+    <string name="battery_hint">小米／HyperOS 省電很兇，背景跑久了可能被關掉：到「設定 → 應用程式 → RunBeat → 省電策略」選「無限制」。</string>
+</resources>
