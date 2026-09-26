@@ -57,15 +57,23 @@
             <Button android:id="@+id/plus5" style="@style/StepButton" android:text="+5" />
         </LinearLayout>
 
+        <!-- 聲音選單預設折疊，點標題展開 -->
         <TextView
+            android:id="@+id/soundHeader"
             style="@style/SectionLabel"
-            android:text="聲音" />
+            android:minHeight="48dp"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="聲音：木魚  ▸" />
 
         <RadioGroup
             android:id="@+id/sounds"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/volumeLabel"

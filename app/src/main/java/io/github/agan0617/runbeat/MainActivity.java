@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity implements MetronomeService.Listener {
     private SharedPreferences prefs;
-    private TextView bpmText, volumeLabel, batteryHint;
+    private TextView bpmText, volumeLabel, batteryHint, soundHeader;
     private SeekBar bpmBar, volumeBar;
     private Button toggle;
     private boolean updating;
@@ -63,9 +63,15 @@ public class MainActivity extends Activity implements MetronomeService.Listener 
             group.addView(rb);
             if (i == cur) rb.setChecked(true);
         }
+        soundHeader = findViewById(R.id.soundHeader);
+        soundHeader.setOnClickListener(v -> {
+            group.setVisibility(group.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+            refresh();
+        });
         group.setOnCheckedChangeListener((g, id) -> {
             int type = (int) g.findViewById(id).getTag();
             prefs.edit().putInt(MetronomeService.KEY_SOUND, type).apply();
+            refresh();
             MetronomeService.send(this, MetronomeService.ACTION_UPDATE);
             if (!MetronomeService.running) preview(type);
         });
@@ -129,6 +135,9 @@ public class MainActivity extends Activity implements MetronomeService.Listener 
         volumeBar.setProgress(vol);
         volumeLabel.setText("音量 " + vol + "%");
         toggle.setText(MetronomeService.running ? "停止" : "開始");
+        int sound = Math.min(prefs.getInt(MetronomeService.KEY_SOUND, 0), Sounds.NAMES.length - 1);
+        boolean open = findViewById(R.id.sounds).getVisibility() == View.VISIBLE;
+        soundHeader.setText("聲音：" + Sounds.NAMES[sound] + (open ? "  ▾" : "  ▸"));
         PowerManager pm = getSystemService(PowerManager.class);
         batteryHint.setVisibility(pm.isIgnoringBatteryOptimizations(getPackageName()) ? View.GONE : View.VISIBLE);
         updating = false;
