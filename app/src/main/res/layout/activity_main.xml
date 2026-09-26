@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- 上面內容可捲動，開始／停止按鈕固定在最下面 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
     android:fillViewport="true">
 
     <LinearLayout
@@ -9,7 +16,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:padding="24dp">
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="8dp">
 
         <TextView
             android:id="@+id/bpm"
@@ -68,16 +78,6 @@
             android:layout_height="48dp"
             android:max="100" />
 
-        <Button
-            android:id="@+id/toggle"
-            android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:layout_marginTop="24dp"
-            android:text="開始"
-            android:textSize="24sp"
-            android:textColor="@color/on_accent"
-            android:backgroundTint="@color/accent" />
-
         <TextView
             android:id="@+id/batteryHint"
             android:layout_width="match_parent"
@@ -89,3 +89,17 @@
             android:text="@string/battery_hint" />
     </LinearLayout>
 </ScrollView>
+
+    <Button
+        android:id="@+id/toggle"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="開始"
+        android:textSize="24sp"
+        android:textColor="@color/on_accent"
+        android:backgroundTint="@color/accent" />
+</LinearLayout>
