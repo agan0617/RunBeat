@@ -54,6 +54,14 @@ public class MainActivity extends Activity implements MetronomeService.Listener 
         RadioGroup group = findViewById(R.id.sounds);
         int cur = prefs.getInt(MetronomeService.KEY_SOUND, 0);
         for (int i = 0; i < Sounds.NAMES.length; i++) {
+            if (i == 0 || i == Sounds.ASMR_START) {
+                TextView h = new TextView(this);
+                h.setText(i == 0 ? "一般" : "ASMR");
+                h.setTextSize(13);
+                h.setTextColor(volumeLabel.getCurrentTextColor());
+                h.setPadding(0, (int) (12 * getResources().getDisplayMetrics().density), 0, 0);
+                group.addView(h);
+            }
             RadioButton rb = new RadioButton(this);
             rb.setId(View.generateViewId());
             rb.setText(Sounds.NAMES[i]);

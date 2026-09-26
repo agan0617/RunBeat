@@ -157,8 +157,11 @@ public class MetronomeService extends Service {
         short[] buf = new short[chunk];
         int curType = soundType;
         float[] click = Sounds.make(curType);
-        float[] playing = null;   // 正在響的那一拍（換聲音時不切斷前一拍）
-        int clickPos = 0;
+        // 同時響著的拍子：拍子快、聲音長時前一拍還沒結束，讓它自然衰減，不硬切（硬切會「啪」）
+        final int voices = 4;
+        float[][] playing = new float[voices][];
+        int[] pos = new int[voices];
+        int nextVoice = 0;
         long n = 0;
         double nextBeat = 0;      // 以取樣為單位；用 double 累加，BPM 不會因取整數而漂
         double lastBeat = 0;
@@ -177,17 +180,21 @@ public class MetronomeService extends Service {
             float vol = volume;
             for (int i = 0; i < chunk; i++, n++) {
                 if (n >= nextBeat) {
-                    playing = click;
-                    clickPos = 0;
+                    playing[nextVoice] = click;
+                    pos[nextVoice] = 0;
+                    nextVoice = (nextVoice + 1) % voices;
                     lastBeat = nextBeat;
                     nextBeat += 60.0 * rate / b;
                 }
                 float v = 0;
-                if (playing != null) {
-                    v = playing[clickPos++];
-                    if (clickPos >= playing.length) playing = null;
+                for (int k = 0; k < voices; k++) {
+                    float[] p = playing[k];
+                    if (p == null) continue;
+                    v += p[pos[k]++];
+                    if (pos[k] >= p.length) playing[k] = null;
                 }
-                buf[i] = (short) Math.round(v * vol * 32767);
+                v = Math.max(-1f, Math.min(1f, v * vol));
+                buf[i] = (short) Math.round(v * 32767);
             }
             track.write(buf, 0, chunk);
         }
